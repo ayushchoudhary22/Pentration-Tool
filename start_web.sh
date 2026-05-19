@@ -2,7 +2,13 @@
 echo "Starting Penetration Testing Web Application..."
 echo ""
 echo "Setting Gemini API Key..."
-export GEMINI_API_KEY="AIzaSyAgGZIoF9tXqxRcd6Jhab8vQTfYc7VJWYU"
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+else
+    echo "WARNING: .env file not found. Create one to set your GEMINI_API_KEY."
+fi
 echo ""
 echo "Make sure you have installed all dependencies:"
 echo "  pip install -r requirements.txt"
