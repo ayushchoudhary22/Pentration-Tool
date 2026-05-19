@@ -1,117 +1,95 @@
-# Penetration Testing Suite - Web Application
+# 🛡️ Penetration Testing Suite - Hybrid Web Application
 
-A full-stack web application for penetration testing with real-time progress updates and comprehensive reporting.
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
+![Security](https://img.shields.io/badge/Security-Audit-red?style=for-the-badge&logo=security)
 
-## Features
+A full-stack, AI-powered web application for automated penetration testing. It features real-time progress updates, comprehensive HTML reporting, and AI-driven vulnerability remediation suggestions using the Google Gemini API.
 
-- 🌐 **Web-Based Interface**: Modern, responsive web UI
-- 🔄 **Real-Time Updates**: Live progress tracking via WebSockets
-- 🕷️ **Web Crawler**: Automatically discovers pages and forms
-- 🔌 **Port Scanner**: Scans for open ports and services
-- 🔍 **Passive Scanner**: Analyzes security headers, cookies, and TLS
-- 🐛 **Active Scanner**: Detects SQL injection and XSS vulnerabilities
-- 📊 **HTML Reports**: Beautiful, detailed security reports
-- 📜 **Scan History**: View and manage previous scans
+---
 
-## Installation
+## ✨ Key Features
 
-1. Install dependencies:
+- 🌐 **Web-Based Dashboard**: Modern, responsive, and intuitive web UI.
+- 🤖 **AI-Powered Remediation**: Uses Google Gemini API to analyze vulnerabilities and provide step-by-step mitigation advice.
+- 🔄 **Real-Time Updates**: Live scan progress tracking via WebSockets.
+- 🕷️ **Intelligent Web Crawler**: Automatically discovers hidden pages, forms, and endpoints.
+- 🔌 **Hybrid Port Scanner**: High-speed port and service discovery.
+- 🔍 **Passive Security Scanner**: Analyzes security headers, cookies, TLS/SSL, and sensitive paths.
+- 🐛 **Active Vulnerability Scanner**: Detects SQL injection (SQLi) and Cross-Site Scripting (XSS).
+- 📊 **Executive Reports**: Generates beautiful, detailed HTML security reports.
+
+## 🚀 Quick Setup
+
+1. **Install dependencies**:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Create necessary directories:
-```bash
-mkdir -p reports templates static/css static/js
+2. **Configure your AI Remediation Engine**:
+Create a `.env` file in the root directory and add your Google Gemini API key:
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-## Running the Application
+## 💻 Running the Application
 
-### Web Application (Recommended)
+### The Easiest Way (Recommended)
+You can start the web application instantly using the provided startup scripts.
 
-Start the Flask web server:
+**On Windows:**
+Double-click `start_web.bat` or run:
+```powershell
+.\start_web.bat
+```
+
+**On Linux/macOS:**
+```bash
+./start_web.sh
+```
+
+### Manual Startup
+Alternatively, you can start the Flask web server manually:
 ```bash
 python app.py
 ```
 
-Then open your browser and navigate to:
-```
-http://localhost:5000
-```
+Then open your browser and navigate to: **`http://localhost:5000`**
 
-### Command Line Interface (Original)
+## 📖 How to Use
 
-You can still use the original CLI version:
-```bash
-python runall.py
-```
+1. **Configure Your Target**: Enter the Target URL, select crawl depth (1-5), and set the port range.
+2. **Launch the Scan**: Hit "Start Scan" and watch the real-time WebSocket logs as the tool attacks the target.
+3. **Analyze Findings**: Once completed, view the summary statistics and download the comprehensive HTML report.
+4. **AI Remediation**: Send your scan results to the Gemini AI module to get intelligent fixes for the discovered vulnerabilities.
 
-## Usage
+## 🗂️ Project Architecture
 
-### Web Interface
-
-1. **Start a Scan**:
-   - Enter the target URL
-   - Configure crawl depth (1-5)
-   - Set port range to scan
-   - Optionally enable PoC module
-   - Click "Start Scan"
-
-2. **Monitor Progress**:
-   - Watch real-time progress updates
-   - See which stage is currently running
-   - View detailed progress messages
-
-3. **View Results**:
-   - See summary statistics
-   - Download/view full HTML report
-   - Review scan history
-
-### API Endpoints
-
-- `POST /api/scan/start` - Start a new scan
-- `GET /api/scan/<scan_id>/status` - Get scan status
-- `GET /api/scan/<scan_id>/report` - Download scan report
-- `GET /api/scans` - List all scans
-
-## Project Structure
-
-```
+```text
 pentest_project/
-├── app.py                 # Flask web application
-├── runall.py              # Original CLI version
-├── modules/               # Core scanning modules
-│   ├── crawler.py
-│   ├── portscanner.py
-│   ├── passivescan.py
-│   ├── activescan.py
-│   ├── poc.py
-│   └── reporter.py
-├── templates/             # HTML templates
-│   └── index.html
-├── static/                # Static assets
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       └── app.js
-└── reports/               # Generated reports
+├── app.py                 # Core Flask web application
+├── start_web.bat / .sh    # Environment setup and launch scripts
+├── .env.example           # Template for API keys
+├── modules/               # Security Engine
+│   ├── ai_remediation.py  # Gemini AI Integration
+│   ├── crawler.py         # Web Spider
+│   ├── portscanner.py     # Network Scanner
+│   ├── passivescan.py     # Header & Cookie Analysis
+│   ├── activescan.py      # SQLi & XSS Detection
+│   ├── poc.py             # Proof of Concept generator
+│   └── reporter.py        # Report Generation
+├── templates/             # HTML UI templates
+└── static/                # CSS and JavaScript assets
 ```
 
-## Security Notes
+## ⚠️ Disclaimer & Security Notes
 
-⚠️ **Important**: This tool is for authorized security testing only. Always ensure you have permission before scanning any target.
+**This tool is designed strictly for authorized security testing and educational purposes only.** 
 
-- Only use on systems you own or have explicit permission to test
-- The PoC module requires interactive confirmation (disabled in web version)
-- All scans are logged for audit purposes
+- Only use this tool on systems you own or have explicit, written permission to test.
+- The PoC (Proof of Concept) module requires interactive confirmation and is built for validation, not exploitation.
+- The author is not responsible for any misuse or illegal activities performed with this tool.
 
-## Technologies Used
-
-- **Backend**: Flask, Flask-SocketIO
-- **Frontend**: HTML5, CSS3, JavaScript, Socket.IO
-- **Python Libraries**: requests, BeautifulSoup4, socket, ssl
-
-## License
-
-This project is for educational and authorized security testing purposes only.
-
+---
+*Built with ❤️ for the Cybersecurity Community.*
