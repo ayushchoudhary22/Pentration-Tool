@@ -71,6 +71,10 @@ pentest_project/
 ├── app.py                 # Core Flask web application
 ├── start_web.bat / .sh    # Environment setup and launch scripts
 ├── .env.example           # Template for API keys
+├── docs/                  # Documentation and Reports
+│   ├── API_REMEDIATION.md
+│   └── Project_Report.pdf
+├── scripts/               # Utility scripts
 ├── modules/               # Security Engine
 │   ├── ai_remediation.py  # Gemini AI Integration
 │   ├── crawler.py         # Web Spider
